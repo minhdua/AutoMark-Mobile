@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/tk_phodiem"
+        android:icon="@drawable/ic_pie_chart_black_24dp"
+        android:title="Phổ điểm"
+        android:iconTintMode="src_in"
+        app:showAsAction="ifRoom"/>
+    <item android:title="Loại điểm"
+        android:icon="@drawable/ic_insert_chart_black_24dp"
+        android:id="@+id/tk_loaidiem"
+        app:showAsAction="ifRoom"/>
+    <item app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_check_circle_white"
+        android:id="@+id/tk_tile_traloi_dung"
+        android:title="Tỉ lệ đúng"/>
+</menu>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DataStruct.DapAn.DanhSachDapAn">
+    <item android:id="@+id/add_by_hand"
+        android:orderInCategory="101"
+        android:title="Thêm bằng tay"
+        android:icon="@drawable/ic_add_by_hand"
+        app:showAsAction="always"/>
+    <item android:id="@+id/add_by_camera"
+        android:orderInCategory="100"
+        android:title="Thêm bằng máy ảnh"
+        android:icon="@drawable/ic_add_by_camera"
+        app:showAsAction="always"/>
+    <item android:id="@+id/add_by_excel"
+        android:orderInCategory="102"
+        android:title="Thêm bằng excel"/>
+    <item android:id="@+id/ds_dap_an_delete_all"
+        android:orderInCategory="103"
+        android:title="Xóa tất cả"/>
+</menu>

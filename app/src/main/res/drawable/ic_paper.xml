@@ -1,0 +1,4 @@
+<vector android:height="24dp" android:viewportHeight="765"
+    android:viewportWidth="475" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#000" android:name="Forma 1" android:pathData="m250 100v25h-175v-25zm75 -100v150c0 15 12.5 25 25 25h125l-150 -175zm-75 175v25h-175v-25zm150 75v25h-325v-25zm0 75v25h-325v-25zm0 75v25h-325v-25zm-87.5 100c-34.5 0 -62.5 28 -62.5 62.5c0 34.5 28 62.5 62.5 62.5c34.5 0 62.5 -28 62.5 -62.5c0 -34.5 -28 -62.5 -62.5 -62.5zm-262.5 -500c-27.5 0 -50 22.5 -50 50v575c0 27.5 22.5 50 50 50h200v-52.5c-15 -15 -25 -37.5 -25 -60c0 -47.5 40 -87.5 87.5 -87.5c47.5 0 87.5 40 87.5 87.5c0 25 -10 45 -25 60v52.5h50c27.5 0 50 -22.5 50 -50v-425h-125c-27.5 0 -50 -22.5 -50 -50v-150zm225 642.5v122.5l37.5 -37.5l37.5 37.5v-122.5c-12.5 5 -25 7.5 -37.5 7.5c-12.5 0 -25 -2.5 -37.5 -7.5z"/>
+</vector>

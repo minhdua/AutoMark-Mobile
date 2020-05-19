@@ -1,0 +1,75 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Cài đặt chung">
+        <SwitchPreference
+            android:id="@+id/setting_update"
+            android:defaultValue="true"
+            android:key="setting_update"
+            android:summary="Tự động thông báo cập nhật khi có phiên bản mới."
+            android:title="Cập nhật" />
+        <SwitchPreference
+            android:id="@+id/setting_vibrate"
+            android:defaultValue="true"
+            android:key="setting_vibrate"
+            android:summary="Rung báo hiệu khi nhận diện thành công phiếu thi."
+            android:title="Rung" />
+        <SwitchPreference
+            android:id="@+id/setting_auto"
+            android:defaultValue="true"
+            android:key="setting_auto"
+            android:summary="Tự động lưu bài làm khi nhận diện thành công và quay lại chấm bài khác."
+            android:title="Tự động" />
+        <SwitchPreference
+            android:id="@+id/setting_simplify"
+            android:defaultValue="false"
+            android:key="setting_simplify"
+            android:summary="Không chi nhỏ điểm thành các thang như B+, C+ hay D+..."
+            android:title="Đơn giản hóa điểm" />
+        <EditTextPreference
+            android:id="@+id/setting_timeDelay"
+            android:capitalize="words"
+            android:defaultValue="1000"
+            android:inputType="numberDecimal"
+            android:key="setting_timeDelay"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="1 giây"
+            android:title="Thời gian xem" />
+        <ListPreference
+            android:defaultValue="0"
+            android:key="setting_language"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:summary="Tiếng Việt"
+            android:title="Ngôn ngữ" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Thông tin ứng dụng">
+        <EditTextPreference
+            android:id="@+id/app_name"
+            android:key="app_name"
+            android:title="Tên ứng dụng"
+            android:summary="Chấm thi trắc nghiệm"
+            android:clickable="false"/>
+        <EditTextPreference
+            android:id="@+id/app_version"
+            android:key="app_version"
+            android:title="Phiên bản"
+            android:summary="v1.0.1"
+            android:clickable="false"/>
+        <EditTextPreference
+            android:id="@+id/app_publicDay"
+            android:key="app_publicDay"
+            android:title="Ngày phát hành"
+            android:summary="Ngày 1 tháng 9 năm 2018"
+            android:clickable="false"/>
+        <EditTextPreference
+            android:id="@+id/app_authorEmail"
+            android:key="app_authorEmail"
+            android:title="Email tác giả"
+            android:summary="project.futuresky@gmail.com"
+            android:clickable="false"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

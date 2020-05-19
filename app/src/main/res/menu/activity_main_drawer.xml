@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_ds"
+            android:icon="@drawable/ic_list"
+            android:title="Bài thi" />
+        <item
+            android:id="@+id/nav_giay"
+            android:icon="@drawable/ic_paper"
+            android:title="Mẫu phiếu" />
+        <item
+            android:id="@+id/nav_hd"
+            android:icon="@drawable/ic_instructions"
+            android:title="Hướng dẫn" />
+        <item
+            android:id="@+id/nav_caidat"
+            android:icon="@drawable/ic_settings"
+            android:title="Thiết lập" />
+    </group>
+
+    <item android:title="Tùy chọn">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Chia sẻ" />
+            <item
+                android:id="@+id/nav_fb"
+                android:icon="@drawable/ic_fb"
+                android:title="Facebook tác giả" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Phản hồi" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit"
+                android:title="Thoát" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+    xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.TuyChon.CaiDatActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_options">
+        <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:id="@+id/options_layout"
+            >
+            <TableRow
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type Frame: "
+                    style="@style/TextShadow"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_18" />
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/spinnerTypeFrame"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X : "
+                    style="@style/TextShadow"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_18" />
+                <com.travijuu.numberpicker.library.NumberPicker
+                    android:id="@+id/number_pickerX"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    numberpicker:min="0"
+                    numberpicker:max="1200"
+                    numberpicker:value="0"
+                    numberpicker:unit="1"
+                    numberpicker:focusable="true"
+                    numberpicker:custom_layout="@layout/number_picker_layout" />
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Y : "
+                    style="@style/TextShadow"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_18" />
+                <com.travijuu.numberpicker.library.NumberPicker
+                    android:id="@+id/number_pickerY"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    numberpicker:min="0"
+                    numberpicker:max="840"
+                    numberpicker:value="0"
+                    numberpicker:unit="1"
+                    numberpicker:focusable="true"
+                    numberpicker:custom_layout="@layout/number_picker_layout" />
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Width: "
+                    style="@style/TextShadow"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_18" />
+                <com.travijuu.numberpicker.library.NumberPicker
+                    android:id="@+id/number_pickerWidth"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    numberpicker:min="0"
+                    numberpicker:max="1200"
+                    numberpicker:value="0"
+                    numberpicker:unit="1"
+                    numberpicker:focusable="true"
+                    numberpicker:custom_layout="@layout/number_picker_layout" />
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Height: "
+                    style="@style/TextShadow"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_18" />
+                <com.travijuu.numberpicker.library.NumberPicker
+                    android:id="@+id/number_pickerHeight"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    numberpicker:min="0"
+                    numberpicker:max="840"
+                    numberpicker:value="0"
+                    numberpicker:unit="1"
+                    numberpicker:focusable="true"
+                    numberpicker:custom_layout="@layout/number_picker_layout" />
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cols: "
+                    style="@style/TextShadow"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_18" />
+                <com.travijuu.numberpicker.library.NumberPicker
+                    android:id="@+id/number_pickerCols"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    numberpicker:min="0"
+                    numberpicker:max="25"
+                    numberpicker:value="0"
+                    numberpicker:unit="1"
+                    numberpicker:focusable="true"
+                    numberpicker:custom_layout="@layout/number_picker_layout" />
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rows: "
+                    style="@style/TextShadow"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_18" />
+                <com.travijuu.numberpicker.library.NumberPicker
+                    android:id="@+id/number_pickerRows"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    numberpicker:min="0"
+                    numberpicker:max="50"
+                    numberpicker:value="0"
+                    numberpicker:unit="1"
+                    numberpicker:focusable="true"
+                    numberpicker:custom_layout="@layout/number_picker_layout" />
+            </TableRow>
+        </TableLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/buttons_control"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp">
+        <ImageView
+            android:id="@+id/imageViewSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="10dp"
+            android:src="@drawable/ic_save_black_24dp" />
+        <ImageView
+            android:id="@+id/imageViewCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="10dp"
+            android:src="@drawable/ic_check_circle_black_24dp" />
+        <ImageView
+            android:id="@+id/imageViewClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="10dp"
+            android:src="@drawable/ic_clear_all_black_24dp"
+            android:clickable="true"/>
+        </LinearLayout>
+    </RelativeLayout>
+        <ImageView
+            android:id="@+id/imageViewDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginVertical="50dp"
+            android:padding="1dp"
+            android:background="#000"
+            android:layout_below="@id/container_options"/>
+
+</RelativeLayout>

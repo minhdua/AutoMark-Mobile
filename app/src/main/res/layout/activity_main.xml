@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableLayout
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TableRow
+            android:gravity="center_horizontal"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_folder_open_black_24dp"/>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Mẫu đề thi"
+                android:background="@drawable/button_menu"
+                android:textColor="@color/white"
+                android:id="@+id/setofomr"/>
+        </TableRow>
+        <TableRow
+            android:gravity="center_horizontal"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_storage_black_24dp"/>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Lưu trữ"
+                android:background="@drawable/button_menu"
+                android:textColor="@color/white"
+                android:id="@+id/buttonStorage"/>
+        </TableRow>
+        <TableRow
+            android:gravity="center_horizontal"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_live_help_black_24dp"/>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Hỗ Trợ"
+                android:background="@drawable/button_menu"
+                android:textColor="@color/white"
+                android:id="@+id/btn_tutorial"/>
+        </TableRow>
+        <TableRow
+            android:gravity="center_horizontal"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_info_black_24dp"/>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Thông tin"
+                android:background="@drawable/button_menu"
+                android:textColor="@color/white"
+                android:id="@+id/btn_about"/>
+        </TableRow>
+    </TableLayout>
+    <TextView
+        android:layout_above="@+id/email"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Designed and Developer by VoThanhHien"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"/>
+    <TextView
+        android:id="@+id/email"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Hienb1606980@student.ctu.edu.vn"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"/>
+</RelativeLayout>
+

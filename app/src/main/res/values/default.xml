@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_group">Groups count</string>
+    <string name="default_row">Rows count</string>
+    <string name="default_x">X coordinate</string>
+    <string name="default_y">Y coordinate</string>
+    <string name="default_width">Width size</string>
+    <string name="default_height">Height size</string>
+    <string name="default_rx">Ratio x</string>
+    <string name="default_ry">Ratio y</string>
+    <string name="default_lenght">length</string>
+</resources>

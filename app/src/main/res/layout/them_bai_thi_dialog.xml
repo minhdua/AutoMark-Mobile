@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/x_add"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Thêm bài thi"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:textColor="#e74c3c"/>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/ten_bai_thi_moi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên bài thi"
+        android:drawableLeft="@drawable/x_new"
+        android:textSize="15dp"
+        android:drawablePadding="5dp"
+        android:textColorHint="#f0932b"
+        android:textColor="#eb4d4b"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/x_paper"
+            android:textColor="#ff6b6b"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:textSize="15dp"
+            android:drawablePadding="5dp"
+            android:text="Loại giấy: "/>
+        <Spinner
+            android:id="@+id/ds_loai_giay"
+            android:layout_width="130dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            android:spinnerMode="dropdown"/>
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/so_cau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số câu"
+        android:drawableLeft="@drawable/x_number"
+        android:textSize="15dp"
+        android:inputType="number"
+        android:drawablePadding="5dp"
+        android:textColorHint="#2ecc71"
+        android:textColor="#eb4d4b"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+</LinearLayout>

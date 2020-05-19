@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/elementSetOfOMR"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    tools:context=".activities.MauDe.MauDeActivity">
+
+    <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewPosition"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="1"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:background="@drawable/ic_folder_black_24dp"
+            android:gravity="center">
+        </TextView>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên mẫu: "
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_name_setofomr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="name set" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Số câu hỏi: "
+                    android:textColor="@color/black"/>
+                <TextView
+                android:id="@+id/tv_numberquesion_setofomr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng điểm: "
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tv_maximumscore_setofomr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày tạo:"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/tv_typesheet_setofomr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteSet"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:visibility="gone"/>
+</RelativeLayout>

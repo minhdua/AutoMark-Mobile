@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ds_phieu_tra_loi_long_press_delete"
+        android:title="Xóa"/>
+</menu>
