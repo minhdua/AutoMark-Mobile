@@ -25,7 +25,7 @@
             android:gravity="center"
             android:text="Mã đề"
             android:textAlignment="center"
-            android:textColor="#ecf0f1"
+            android:textColor="#9F9F9F"
             android:textSize="24dp"
             android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
             android:gravity="center"
             android:text="000"
             android:textAlignment="center"
-            android:textColor="#f53a46"
+            android:textColor="#F36159"
             android:textSize="32dp"
             android:textStyle="bold" />
     </LinearLayout>

@@ -1,4 +1,4 @@
-package com.vothanhhien.automarkmobile.activities.TuyChon;
+package com.vothanhhien.automarkmobile.activities.Main;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.util.Pair;
 
 
@@ -33,10 +33,13 @@ import com.nightonke.jellytogglebutton.JellyToggleButton;
 import com.nightonke.jellytogglebutton.State;
 import com.vothanhhien.automarkmobile.R;
 import com.vothanhhien.automarkmobile.activities.DapAn.DanhSachDapAn;
+import com.vothanhhien.automarkmobile.activities.DapAn.DapAn;
+import com.vothanhhien.automarkmobile.activities.Fix.FixLocation;
 import com.vothanhhien.automarkmobile.activities.PhieuTraLoi.PhieuTraLoi;
 import com.vothanhhien.automarkmobile.constants.SC;
 import com.vothanhhien.automarkmobile.models.BaiThi;
 import com.vothanhhien.automarkmobile.models.CauTraLoi;
+import com.vothanhhien.automarkmobile.models.HinhAnh;
 import com.vothanhhien.automarkmobile.models.KhungTraLoi;
 import com.vothanhhien.automarkmobile.models.LuaChon;
 import com.vothanhhien.automarkmobile.models.Quadrilateral;
@@ -48,13 +51,19 @@ import com.vothanhhien.automarkmobile.utils.ImageDetectionProperties;
 import com.vothanhhien.automarkmobile.utils.UtilityFunctions;
 import com.vothanhhien.automarkmobile.utils.Utils;
 import com.vothanhhien.automarkmobile.view.ScanCanvasView;
+import com.vothanhhien.automarkmobile.view.ViewResultScore;
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton;
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper;
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout;
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem;
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList;
+import com.wangjie.rapidfloatingactionbutton.util.RFABShape;
+import com.wangjie.rapidfloatingactionbutton.util.RFABTextUtil;
 
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
@@ -65,9 +74,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static android.view.View.GONE;
+import static com.vothanhhien.automarkmobile.R.drawable.*;
 import static org.opencv.imgproc.Imgproc.threshold;
 
-public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 , RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener{
     //    // required for Imread etc: https://stackoverflow.com/questions/35090838/no-implementation-found-for-long-org-opencv-core-mat-n-mat-error-using-opencv
     private static final String mOpenCvLibrary = "opencv_java3";
     static {
@@ -82,7 +92,7 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
     private FrameLayout cameraPreviewLayout;
     private int saveRows, saveCols;
     private int secondsLeft;
-    private JellyToggleButton startAutoCapture,check_btn;
+    private Button startAutoCapture;
     private LinearLayout captureHintLayout;
     private long sheet;
     private Mat outMat,originMat;
@@ -99,9 +109,22 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
     private ViewGroup containerScan;
     public boolean acceptLayoutShowing = false, acceptResult=false, canCheckMarker=false;;
     private List<KhungTraLoi> khungs;
-    private ImageView showResult;
+    private ImageView showResult,folder_preview;
     private int mode;
     private BaiThi baithi;
+    private RapidFloatingActionHelper rfabHelper;
+    private RapidFloatingActionLayout rfaLayout;
+    private RapidFloatingActionButton rfaBtn;
+    private View flash;
+    private boolean den_flash = false,isContinue=false;
+    private boolean debug =  false;
+    private boolean hienketqua = false;
+    private TextView made,sbd,diemso;
+    private String made_text,sbd_text,diem_text;
+    private LinearLayout ketquacham;
+    private boolean checkposition = false;
+    private boolean save_folder = false;
+    private int color = Color.rgb( 38, 32, 216);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,33 +140,42 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                 v.setEnabled(false);
                 v.setClickable(false);
                 Log.d("custom"+TAG, "Image Accepted.");
-                FileUtils.checkMakeDirs(SC.CURR_DIR);
-                FileUtils.checkMakeDirs(SC.CURR_ORIG_DIR);
-                FileUtils.checkMakeDirs(SC.CURR_ERROR_DIR);
-                FileUtils.checkMakeDirs(SC.INPUT_CROP_DIR);
-                SC.IMAGE_CTR = new File(SC.CURR_DIR).listFiles(SC.jpgFilter).length + 1;
-                final String IMAGE_NAME = SC.IMAGE_PREFIX + SC.IMAGE_CTR+".jpg";
+                final String STORAGE_BAITHI = SC.STORAGE_PROJECT + baithi.getTen()+"/";
+                FileUtils.checkMakeDirs(STORAGE_BAITHI);
+//                SC.IMAGE_CTR = new File(SC.CURR_DIR).listFiles(SC.jpgFilter).length + 1;
+//                final String IMAGE_NAME = SC.IMAGE_PREFIX + SC.IMAGE_CTR+".jpg";
 
-                Toast.makeText(ChamDiemActivity.this, "Saving to: " + IMAGE_NAME, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ChamDiemActivity.this, "Saving to: " + IMAGE_NAME, Toast.LENGTH_SHORT).show();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        tempBitmap = Utils.matToBitmapRotate(saveOriginMat);
-                        FileUtils.saveBitmap(tempBitmap, SC.CURR_ORIG_DIR, IMAGE_NAME);
+                        Mat warpSave = Utils.four_point_transform_scaled(saveOriginMat, saveCols, saveRows, savePoints);
+                        Utils.resize_util_inplace(warpSave, SC.uniform_width, SC.uniform_height);
+                        Mat imageResult = warpSave.clone();
+                        Mat checkMat = warpSave.clone();
+                        if (checkposition){
+                            Intent intent = new Intent(getBaseContext(), FixLocation.class);
 
-                        Mat warpOrigin = Utils.four_point_transform_scaled(saveOriginMat, saveCols, saveRows, savePoints);
-                        Utils.resize_util_inplace(warpOrigin, SC.uniform_width, SC.uniform_height);
-                        Mat imageResult = warpOrigin.clone();
-                        Mat matDraw = warpOrigin.clone();
-                        tempBitmap = Utils.matToBitmapRotate(warpOrigin);
-                        FileUtils.saveBitmap(tempBitmap,SC.INPUT_CROP_DIR,IMAGE_NAME);
+                            long addr = checkMat.getNativeObjAddr();
+                            intent.putExtra( "Hinh anh", addr );
+                            intent.putExtra("Bai thi",baithi);
+                            startActivity( intent );
 
-                        // vẽ tất cả tâm của các lựa chọn để tiện bề fix vị trí
-
-                        if (checkBtn(R.id.check_btn)){
-                            Utils.drawAllChoice(matDraw, khungs);
-                            tempBitmap = Utils.matToBitmapRotate(matDraw);
-                            FileUtils.saveBitmap(tempBitmap,SC.CURR_ERROR_DIR,IMAGE_NAME);
+//                            HinhAnh hinhanh = new HinhAnh(matDraw,baithi);
+////                            HinhAnh hinhanh = null;
+//                            intent.putExtra("hinhanh",hinhanh);
+////                            Mat fiximage = Utils.drawAllChoice(matDraw, khungs);
+////                            Bitmap fixBimap = Utils.matToBitmapRotate(fiximage);
+////                            ByteArrayOutputStream stream0 = new ByteArrayOutputStream();
+////                            fixBimap.compress(Bitmap.CompressFormat.JPEG, 100, stream0);
+////                            byte[] byteArray0 = stream0.toByteArray();
+////                            intent.putExtra("hinhanh",byteArray0);
+//                            // chuyển thành mảng byte
+//                            // put vào intent
+//                            startActivity(intent);
+////
+////                            tempBitmap = Utils.matToBitmapRotate(matDraw);
+////                            FileUtils.saveBitmap(tempBitmap,SC.CURR_ERROR_DIR,IMAGE_NAME);
                         }
                         // stranform hình ảnh xử lý
                         Mat warpOut = Utils.four_point_transform_scaled(saveOutMat, saveCols, saveRows, savePoints);
@@ -153,7 +185,7 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                         // Chuyển sang ảnh nhị phân để xử lý
                         Mat image_gray = new Mat();
                         threshold(warpOut,image_gray,SC.BINARY_THRESH,255,Imgproc.THRESH_BINARY);
-                        FileUtils.saveMat(image_gray,SC.CURR_DIR,"image_gray.jpg");
+//                        FileUtils.saveMat(image_gray,SC.CURR_DIR,"image_gray.jpg");
                         PhieuTraLoi phieuTraLoi = new PhieuTraLoi();
                         List<LuaChon> options, luaChons = new ArrayList<>();
                         //  Lấy Mã đề
@@ -204,21 +236,27 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
 
                             //  lấy đáp đáp án đúng
                             DapAnDatabase dapAnDatabase = new DapAnDatabase(ChamDiemActivity.this);
-                            int idDapAnDung = dapAnDatabase.LayIdMaDe(Integer.parseInt(phieuTraLoi.getMaDe()),Integer.parseInt(baithi.getId()));
-                            if (idDapAnDung>0){
-                                com.vothanhhien.automarkmobile.activities.DapAn.DapAn dapAnDung = dapAnDatabase.layDapAn(idDapAnDung);
+                            int idDapAnDung=0;
+                            try{
+                                idDapAnDung = dapAnDatabase.LayIdMaDe(Integer.parseInt(phieuTraLoi.getMaDe()),Integer.parseInt(baithi.getId()));
+                            }catch(NumberFormatException e){
 
-                                // đánh giá kết quả
-                                List<LuaChon> dapAnsDung = UtilityFunctions.convertString2ChoicesAnswer(dapAnDung.getDapAn(),khungs);
-                                Pair<Integer,List<LuaChon>> ketQua = UtilityFunctions.evaluate(tuyChons,dapAnsDung);
-                                phieuTraLoi.setDiem(ketQua.first/(float)questionCount);
-                                phieuTraLoi.setSoCauDung(ketQua.first);
-                                luaChons.addAll(ketQua.second);
-                            }else{
-                                phieuTraLoi.setDiem(0);
-                                phieuTraLoi.setSoCauDung(0);
-                                luaChons.addAll(tuyChons);
                             }
+                            if (idDapAnDung>0){
+                            DapAn dapAnDung = dapAnDatabase.layDapAn(idDapAnDung);
+
+                            // đánh giá kết quả
+                            List<LuaChon> dapAnsDung = UtilityFunctions.convertString2ChoicesAnswer(dapAnDung.getDapAn(),khungs);
+                            Pair<Integer,List<LuaChon>> ketQua = UtilityFunctions.evaluate(tuyChons,dapAnsDung);
+                            phieuTraLoi.setDiem(ketQua.first/(float)questionCount);
+                            phieuTraLoi.setSoCauDung(ketQua.first);
+                            luaChons.addAll(ketQua.second);
+                        }else{
+                            phieuTraLoi.setDiem(0);
+                            phieuTraLoi.setSoCauDung(0);
+                            luaChons.addAll(tuyChons);
+                        }
+
 
 
                             PhieuTraLoiDatabase phieuTraLoiDatabase = new PhieuTraLoiDatabase(ChamDiemActivity.this);
@@ -231,10 +269,10 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                             Mat imageName = imageResult.clone();
                             Bitmap nameBitMat = Utils.matToBitmapRotate(imageName);
                             Point[] points = new Point[]{
-                                    new Point(240,120),
-                                    new Point(480,120),
-                                new Point(480,440),
-                                new Point(240,440)
+                                    new Point(240,256),
+                                    new Point(480,256),
+                                new Point(480,316),
+                                new Point(240,316)
                             };
 
                             ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -248,19 +286,19 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
 
                             Utils.drawAnswers(imageResult,luaChons);
 
-                            Mat textRotate = new Mat(imageResult.size(),imageResult.type(),new Scalar(0));
-                            Imgproc.putText(textRotate, "Ma De: "+phieuTraLoi.getMaDe(),
-                                    new Point(200, 250),
-                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255,-255,-255), 3);
-                            Imgproc.putText(textRotate, "MSSV: "+phieuTraLoi.getSBD(),
-                                    new Point(200, 300),
-                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255,-255,-255), 3);
-                            Imgproc.putText(textRotate, Math.round(phieuTraLoi.getDiem()*100)+"%",
-                                    new Point(200, 400),
-                                    Core.FONT_HERSHEY_SIMPLEX, 4, new Scalar(255,-255,-255), 3);
-
-                            Utils.rotate(textRotate,90);
-                            Core.add(textRotate,imageResult,imageResult);
+//                            Mat textRotate = new Mat(imageResult.size(),imageResult.type(),new Scalar(0));
+//                            Imgproc.putText(textRotate, "Ma De: "+phieuTraLoi.getMaDe(),
+//                                    new Point(200, 250),
+//                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255,-255,-255), 3);
+//                            Imgproc.putText(textRotate, "MSSV: "+phieuTraLoi.getSBD(),
+//                                    new Point(200, 300),
+//                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255,-255,-255), 3);
+//                            Imgproc.putText(textRotate, Math.round(phieuTraLoi.getDiem()*100)+"%",
+//                                    new Point(200, 400),
+//                                    Core.FONT_HERSHEY_SIMPLEX, 4, new Scalar(255,-255,-255), 3);
+//
+//                            Utils.rotate(textRotate,90);
+//                            Core.add(textRotate,imageResult,imageResult);
 
                             Bitmap imageBitMap = Utils.matToBitmapRotate(imageResult);
                             ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
@@ -271,7 +309,21 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                             phieuTraLoiDatabase.ThemPhieuTL(phieuTraLoi);
                         }
                         resultBitMap = Utils.matToBitmapRotate(imageResult);
-                        acceptResult=true;
+                        if (hienketqua) {
+                            made_text =phieuTraLoi.getMaDe() + "";
+                            sbd_text =  phieuTraLoi.getSBD() + "";
+                            diem_text =  phieuTraLoi.getDiem() * baithi.getHeDiem() + "";
+                            acceptResult = true;
+                        }
+
+                        if (save_folder){
+                            String STORAGE_MADE = STORAGE_BAITHI + made_text+"/";
+                            FileUtils.checkMakeDirs(STORAGE_MADE);
+                            tempBitmap = Utils.matToBitmapRotate(saveOriginMat);
+                            FileUtils.saveBitmap(tempBitmap, STORAGE_MADE + "Goc/", sbd_text+".jpg");
+                            FileUtils.saveBitmap(resultBitMap, STORAGE_MADE + "KetQua/", sbd_text+".jpg");
+                        }
+
                     }
                 }).start();
                 cancelAutoCapture();
@@ -308,41 +360,76 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                 }
             });
         }
-
-        startAutoCapture.setOnStateChangeListener(new JellyToggleButton.OnStateChangeListener() {
+        rfaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onStateChange(float process, State state, JellyToggleButton jtb) {
-                switch (state){
-                    case LEFT:
-                        turnOnAuto = false;
-                        cancelAutoCapture();
-                        break;
-                    case RIGHT:
-                        turnOnAuto = true;
-                        break;
+            public void onClick(View v) {
+                if(turnOnAuto){
+                    startAutoCapture.performClick();
+                }
+                rfabHelper.toggleContent();
+            }
+        });
+        startAutoCapture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                turnOnAuto = !turnOnAuto;
+                if(turnOnAuto){
+                    startAutoCapture.setBackgroundResource(tat_chuphinh);
+                    cancelAutoCapture();
+                }else {
+                    startAutoCapture.setBackgroundResource(bat_chuphinh);
+                    cancelAutoCapture();
                 }
             }
         });
-        JellyToggleButton flash = findViewById(R.id.flash_btn);
-        flash.setOnStateChangeListener(new JellyToggleButton.OnStateChangeListener() {
+        folder_preview.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onStateChange(float process, State state, JellyToggleButton jtb) {
-                switch (state){
-                    case LEFT:
-                        ((JavaCameraView)mOpenCvCameraView).turnOffTheFlash();
-                        break;
-                    case RIGHT:
-                        ((JavaCameraView)mOpenCvCameraView).turnOnTheFlash();
-                        break;
-                }
+            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                intent.setType("file/*");
+//                startActivity(intent);
+
+//                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                shareIntent.setType("*/*");
+//                shareIntent.putExtra(Intent.EXTRA_STREAM,
+//                        Uri.fromFile(new File(SC.STORAGE_PROJECT+baithi.getTen()+"/")));
+//                shareIntent.setPackage("com.vothanhhien.automarkmobile");
+//                startActivity(shareIntent);
+
+                String STORAGE_BAITHI = SC.STORAGE_PROJECT + baithi.getTen() + "/";
+                FileUtils.checkMakeDirs(STORAGE_BAITHI);
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.parse("file://"); // a directory
+                intent.setDataAndType(uri, "*/*");
+                startActivity(Intent.createChooser(intent, "Open folder"));
+//                startActivity(intent);
+
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setDataAndType(Uri.parse(STORAGE_BAITHI), "resource/folder");
+//// Check that there is an app activity handling that intent on our system
+//                if (intent.resolveActivityInfo(getBaseContext().getPackageManager(), 0) != null) {
+//                    // Yes there is one start it then
+//                    startActivity(intent);
+//                } else {
+//                    startActivity(intent);
+//                    Toast.makeText(getBaseContext(), "có lỗi",Toast.LENGTH_SHORT).show();
+//                    // Did not find any activity capable of handling that intent on our system
+//                    // TODO: Display error message or something
+//                }
             }
         });
         onCameraGranted();
     }
 
     private void init() {
-
-        startAutoCapture = findViewById(R.id.start_btn);
+        folder_preview = findViewById(R.id.folder);
+        made = findViewById(R.id.made);
+        sbd = findViewById(R.id.sbd);
+        diemso = findViewById(R.id.diemso);
+        ketquacham = findViewById(R.id.ketquacham);
+        startAutoCapture = findViewById(R.id.capture_bat);
         configController = new SC(ChamDiemActivity.this);
         containerScan = findViewById(R.id.container_scan);
         cameraPreviewLayout = findViewById(R.id.camera_preview);
@@ -368,6 +455,68 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Chấm "+baithi.getTen());
+        rfaLayout = findViewById(R.id.activity_main_rfal);
+        rfaBtn = findViewById(R.id.activity_main_rfab);
+
+        RapidFloatingActionContentLabelList rfaContent = new RapidFloatingActionContentLabelList(getApplicationContext());
+        rfaContent.setOnRapidFloatingActionContentLabelListListener(this);
+        List<RFACLabelItem> items = new ArrayList<>();
+        items.add(new RFACLabelItem<Integer>()
+                .setLabel("Chỉnh sửa vị trí khung")
+                .setLabelColor(0xffffffff)
+                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xff3aaaff, RFABTextUtil.dip2px(getApplicationContext(), 4)))
+                .setResId(vi_tri)
+                .setIconNormalColor(0xffffffff)
+                .setIconPressedColor(0xff1abc9c)
+                .setWrapper(0)
+        );
+        items.add(new RFACLabelItem<Integer>()
+                .setLabel("Lưu trong thư mục")
+                .setLabelColor(0xffffffff)
+                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xff3aaaff, RFABTextUtil.dip2px(getApplicationContext(), 4)))
+                .setResId(folder)
+                .setIconNormalColor(0xffffffff)
+                .setIconPressedColor(0xff1abc9c)
+                .setWrapper(1)
+        );
+        items.add(new RFACLabelItem<Integer>()
+                .setLabel("Bật/tắt kết quả")
+                .setLabelColor(0xffffffff)
+                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xff3aaaff, RFABTextUtil.dip2px(getApplicationContext(), 4)))
+                .setResId(xem_ketqua)
+                .setIconNormalColor(0xffffffff)
+                .setIconPressedColor(0xff1abc9c)
+                .setWrapper(2)
+        );
+        items.add(new RFACLabelItem<Integer>()
+                .setLabel("Điều chỉnh")
+                .setLabelColor(0xffffffff)
+                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xff3aaaff, RFABTextUtil.dip2px(getApplicationContext(), 4)))
+                .setResId(dieu_chinh)
+                .setIconNormalColor(0xffffffff)
+                .setIconPressedColor(0xff1abc9c)
+                .setWrapper(3)
+        );
+        items.add(new RFACLabelItem<Integer>()
+                .setLabel("Bật/tắt flash")
+                .setLabelColor(0xffffffff)
+                .setLabelBackgroundDrawable(RFABShape.generateCornerShapeDrawable(0xff3aaaff, RFABTextUtil.dip2px(getApplicationContext(), 4)))
+                .setResId(R.drawable.den_flash)
+                .setIconNormalColor(0xffffffff)
+                .setIconPressedColor(0xff1abc9c)
+                .setWrapper(4)
+        );
+        rfaContent
+                .setItems(items)
+                .setIconShadowColor(0xff888888)
+        ;
+        rfabHelper = new RapidFloatingActionHelper(
+                getApplicationContext(),
+                rfaLayout,
+                rfaBtn,
+                rfaContent
+        ).build();
+
     }
     // Sự kiện khi người dùng nhấn nút mũi tên quay lại
     @Override
@@ -389,6 +538,7 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
     public void onResume()
     {
         super.onResume();
+        den_flash = false;
         mOpenCvCameraView.enableView();
     }
 
@@ -409,7 +559,6 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                     }
                 });
             }
-//        TODO: Find out why this delay is there
         }, 500);
     }
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
@@ -424,10 +573,11 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
         //scanCanvasView.unsetHoverBitmap();
         if(acceptResult) {
             acceptResult = false;
-           scanCanvasView.setHoverBitmap(resultBitMap);
+            scanCanvasView.setHoverBitmap(resultBitMap);
+
            tryShowHover();
         }
-        if (!checkBtn(R.id.xray_btn)) {
+        if (!debug) {
             try {
                 Quadrilateral page = Utils.findPage(processedMat);
                 if (null != page) {
@@ -508,8 +658,9 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
         }
     }
     private void setPaintAndBorder(Paint paint, Paint border) {
-        int paintColor = Color.argb(30, 38, 216, 76);
-        int borderColor = Color.rgb(38, 216, 76);
+        int paintColor = Color.argb(30, 0, 32, 96);
+//        int borderColor = Color.rgb(38, 216, 76);
+        int borderColor = color;
         paint.setColor(paintColor);
         border.setColor(borderColor);
     }
@@ -521,10 +672,11 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
             isCapturing = true;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
                 TransitionManager.beginDelayedTransition(containerScan);
-            startAutoCapture.setChecked(false);
-            cropAcceptBtn.performClick();
+                cropAcceptBtn.performClick();
+                startAutoCapture.performClick();
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d(TAG, "doAutoCapture: "+e);
         }
         isCapturing = false;
     }
@@ -532,6 +684,9 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    made.setText(made_text);
+                    sbd.setText(sbd_text);
+                    diemso.setText(diem_text);
                     showHoverTimer = new CountDownTimer(5 * 1000, 1000) {
                         public void onTick(long millisUntilFinished) {
                         }
@@ -556,6 +711,11 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                     autoCaptureTimer = new CountDownTimer(SC.AUTOCAP_TIMER * 1000, 1000) {
                         public void onTick(long millisUntilFinished) {
                             secondsLeft = Math.round((float) millisUntilFinished / 1000.0f);
+                            if( !turnOnAuto) {
+                                this.onFinish();
+                                this.cancel();
+                            }
+
                             captureHintText.setText(res.getString(R.string.timer_text,secondsLeft));
                         }
 
@@ -564,7 +724,7 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                             acceptLayoutShowing = false;
                             captureHintLayout.setVisibility(GONE);
                             captureHintText.setText( res.getString(R.string.timer_text,0));
-                            doAutoCapture();
+                            if (turnOnAuto) doAutoCapture();
                             scanCanvasView.unsetCameraBitmap();
                         }
                     };
@@ -607,5 +767,55 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
     public void exitApp(){
         System.gc();
         finish();
+    }
+
+    @Override
+    public void onRFACItemLabelClick(int position, RFACLabelItem item) {
+
+    }
+
+    @Override
+    public void onRFACItemIconClick(int position, RFACLabelItem item) {
+        switch (position){
+            case 0 :
+               checkposition = !checkposition;
+                if(checkposition){
+                    color = Color.rgb(38, 216, 76);
+                } else color = Color.rgb( 38, 32, 216);
+                break;
+            case 1 :
+                save_folder = !save_folder;
+                if(save_folder){
+                    folder_preview.setVisibility(View.VISIBLE);
+                } else folder_preview.setVisibility(GONE);
+                break;
+            case 2 :
+                hienketqua = !hienketqua;
+                if(hienketqua){
+                    ketquacham.setVisibility(View.VISIBLE);
+                }else{
+                    ketquacham.setVisibility(GONE);
+                }
+
+                break;
+            case 3 :
+                debug = !debug;
+                if(debug){
+                    item.setIconNormalColor(0xff9f9f9f);
+                }else{
+                    item.setIconNormalColor(0xffffffff);
+                }
+                break;
+            case 4 :
+
+                den_flash = !den_flash;
+                if (den_flash){
+                    ((JavaCameraView)mOpenCvCameraView).turnOnTheFlash();
+                }else   {
+                    item.setIconNormalColor(0xffffffff);
+                    ((JavaCameraView)mOpenCvCameraView).turnOffTheFlash();
+                }
+                break;
+        }
     }
 }

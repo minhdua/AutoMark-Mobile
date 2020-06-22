@@ -1,4 +1,4 @@
-package com.vothanhhien.automarkmobile.activities;
+package com.vothanhhien.automarkmobile.activities.MauPhieu;
 
 import android.os.Bundle;
 
@@ -47,7 +47,7 @@ public class MauPhieuFragment extends Fragment {
         m50_xemtruoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(20, PREVIEW_CODE);
+                RunEvent(50, PREVIEW_CODE);
             }
         });
 
@@ -55,7 +55,7 @@ public class MauPhieuFragment extends Fragment {
         m50_luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(20, SAVE_CODE);
+                RunEvent(50, SAVE_CODE);
             }
         });
 
@@ -63,7 +63,7 @@ public class MauPhieuFragment extends Fragment {
         m50_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(20, OPEN_CODE);
+                RunEvent(50, OPEN_CODE);
             }
         });
 
@@ -71,7 +71,7 @@ public class MauPhieuFragment extends Fragment {
         m60_xemtruoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(40, PREVIEW_CODE);
+                RunEvent(60, PREVIEW_CODE);
             }
         });
 
@@ -79,7 +79,7 @@ public class MauPhieuFragment extends Fragment {
         m60_luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(40, SAVE_CODE);
+                RunEvent(60, SAVE_CODE);
             }
         });
 
@@ -87,7 +87,7 @@ public class MauPhieuFragment extends Fragment {
         m60_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(40, OPEN_CODE);
+                RunEvent(60, OPEN_CODE);
             }
         });
 
@@ -95,7 +95,7 @@ public class MauPhieuFragment extends Fragment {
         m80_xemtruoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(60, PREVIEW_CODE);
+                RunEvent(80, PREVIEW_CODE);
             }
         });
 
@@ -103,7 +103,7 @@ public class MauPhieuFragment extends Fragment {
         m80_luu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(60, SAVE_CODE);
+                RunEvent(80, SAVE_CODE);
             }
         });
 
@@ -111,7 +111,7 @@ public class MauPhieuFragment extends Fragment {
         m80_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RunEvent(60, OPEN_CODE);
+                RunEvent(80, OPEN_CODE);
             }
         });
 

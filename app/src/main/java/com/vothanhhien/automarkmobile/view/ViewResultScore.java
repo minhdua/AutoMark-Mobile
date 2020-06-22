@@ -28,7 +28,7 @@ import com.vothanhhien.automarkmobile.activities.PhieuTraLoi.PhieuTraLoi;
 import com.vothanhhien.automarkmobile.sqlite.PhieuTraLoiDatabase;
 import com.vothanhhien.automarkmobile.activities.Setting.Setting;
 import com.vothanhhien.automarkmobile.models.BaiThi;
-import com.vothanhhien.automarkmobile.sqlite.BaiThiDatabase;
+import com.vothanhhien.automarkmobile.activities.BaiThi.BaiThiDatabase;
 import com.vothanhhien.automarkmobile.sqlite.DapAnDatabase;
 
 public class ViewResultScore extends AppCompatActivity {

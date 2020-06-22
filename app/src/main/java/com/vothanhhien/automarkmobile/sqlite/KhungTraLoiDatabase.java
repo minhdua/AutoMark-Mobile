@@ -55,6 +55,19 @@ public class KhungTraLoiDatabase {
         this.database.replace(dbHelper.TABLE_NAME, null, dl);
     }
 
+    public void CapNhat(KhungTraLoi khungTraLoi) {
+        ContentValues dl = new ContentValues();
+        long id =  khungTraLoi.getId();
+        dl.put(dbHelper.ToaDoX, khungTraLoi.getX());
+        dl.put(dbHelper.ToaDoY, khungTraLoi.getY());
+        dl.put(dbHelper.ChieuRong, khungTraLoi.getWidth());
+        dl.put(dbHelper.ChieuDai, khungTraLoi.getHeight());
+        dl.put(dbHelper.SoDong, khungTraLoi.getRows());
+        dl.put(dbHelper.SoCot, khungTraLoi.getCols());
+        dl.put(dbHelper.MauTraiLoi, khungTraLoi.getMau());
+        this.database = this.dbHelper.getWritableDatabase();
+        this.database.update(dbHelper.TABLE_NAME, dl, dbHelper.ID + " = '"+id+"'",null);
+    }
     public ArrayList<KhungTraLoi> TatCaKhungTL(MauTraLoi mauTraLoi) {
         return (ArrayList<KhungTraLoi>) TatCaKhungTL(mauTraLoi.getId());
     }

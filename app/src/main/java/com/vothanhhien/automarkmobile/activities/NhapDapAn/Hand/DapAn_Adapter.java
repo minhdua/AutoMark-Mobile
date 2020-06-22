@@ -1,5 +1,6 @@
 package com.vothanhhien.automarkmobile.activities.NhapDapAn.Hand;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.view.LayoutInflater;
@@ -44,14 +45,17 @@ public class DapAn_Adapter extends RecyclerView.Adapter<DapAn_Holder> {
     }
 
     // Đặt màu nền cho các ô được lựa chọn
+    @SuppressLint("ResourceType")
     public void setBackground(int a, DapAn_Holder holder) {
         if (isCheck == true) {
             if (a == 0) {
                 holder.n.setBackground(this.myContext.getResources().getDrawable(R.drawable.num_red));
                 holder.end.setBackground(this.myContext.getResources().getDrawable(R.drawable.numreverse_red));
+                holder.choices.setBackground(this.myContext.getResources().getDrawable(R.drawable.choices_row_red));
             } else {
                 holder.n.setBackground(this.myContext.getResources().getDrawable(R.drawable.num));
                 holder.end.setBackground(this.myContext.getResources().getDrawable(R.drawable.numreverse));
+                holder.choices.setBackground(this.myContext.getResources().getDrawable(R.drawable.choices_row));
             }
         }
         holder.a.setBackground(this.myContext.getResources().getDrawable(R.drawable.circle));

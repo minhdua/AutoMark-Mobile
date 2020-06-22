@@ -28,7 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.vothanhhien.automarkmobile.R;
 import com.vothanhhien.automarkmobile.activities.NhapDapAn.Hand.MakeActivity;
-import com.vothanhhien.automarkmobile.activities.TuyChon.ChamDiemActivity;
+import com.vothanhhien.automarkmobile.activities.Main.ChamDiemActivity;
 import com.vothanhhien.automarkmobile.models.BaiThi;
 import com.vothanhhien.automarkmobile.sqlite.DapAnDatabase;
 

@@ -22,20 +22,20 @@
             android:text="Thêm bài thi"
             android:textStyle="bold"
             android:textSize="24dp"
-            android:textColor="#e74c3c"/>
+            android:textColor="#F44336"/>
     </LinearLayout>
+<!--        android:drawableLeft="@drawable/x_new"-->
     <EditText
         android:id="@+id/ten_bai_thi_moi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập tên bài thi"
-        android:drawableLeft="@drawable/x_new"
         android:textSize="15dp"
         android:drawablePadding="5dp"
-        android:textColorHint="#f0932b"
-        android:textColor="#eb4d4b"
+        android:textColor="#9F9F9F"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
+<!--            android:drawableLeft="@drawable/x_paper"-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,8 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/x_paper"
-            android:textColor="#ff6b6b"
+            android:textColor="@color/black"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:textSize="15dp"
@@ -60,17 +59,16 @@
             android:background="@android:drawable/editbox_dropdown_light_frame"
             android:spinnerMode="dropdown"/>
     </RelativeLayout>
+<!--        android:drawableLeft="@drawable/x_number"-->
     <EditText
         android:id="@+id/so_cau"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập số câu"
-        android:drawableLeft="@drawable/x_number"
         android:textSize="15dp"
         android:inputType="number"
         android:drawablePadding="5dp"
-        android:textColorHint="#2ecc71"
-        android:textColor="#eb4d4b"
+        android:textColor="#9f9F9f"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 

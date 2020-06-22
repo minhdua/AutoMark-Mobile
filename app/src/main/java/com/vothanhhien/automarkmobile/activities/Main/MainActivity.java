@@ -27,17 +27,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.facebook.stetho.Stetho;
 import com.google.android.material.navigation.NavigationView;
 import com.vothanhhien.automarkmobile.R;
-import com.vothanhhien.automarkmobile.activities.MauPhieuFragment;
+import com.vothanhhien.automarkmobile.activities.BaiThi.DsBaiThiFrg;
+import com.vothanhhien.automarkmobile.activities.MauPhieu.MauPhieuFragment;
 import com.vothanhhien.automarkmobile.activities.Setting.Setting;
-import com.vothanhhien.automarkmobile.activities.Setting.SettingsActivity;
 import com.vothanhhien.automarkmobile.constants.SC;
 import com.vothanhhien.automarkmobile.models.BaiThi;
 import com.vothanhhien.automarkmobile.models.KhungTraLoi;
 import com.vothanhhien.automarkmobile.models.MauTraLoi;
 import com.vothanhhien.automarkmobile.permission.SimplePermissions;
-import com.vothanhhien.automarkmobile.sqlite.BaiThiDatabase;
+import com.vothanhhien.automarkmobile.activities.BaiThi.BaiThiDatabase;
 import com.vothanhhien.automarkmobile.sqlite.KhungTraLoiDatabase;
 import com.vothanhhien.automarkmobile.sqlite.MauTraLoiDatabase;
 import com.vothanhhien.automarkmobile.utils.FileUtils;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main2);
         HoiQuyen();
         KiemTraVaTaoMau();
+        viewerSQLite();
         duLieu = new BaiThiDatabase(getApplicationContext());
         rfaLayout = findViewById(R.id.activity_main_rfal);
         rfaBtn = findViewById(R.id.activity_main_rfab);
@@ -84,14 +86,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         items.add(new RFACLabelItem<Integer>()
                 .setLabel("Thêm bài thi")
                 .setResId(R.drawable.addtest)
-                .setIconNormalColor(0xff2ecc71)
+                .setIconNormalColor(0xff3aaaff)
                 .setIconPressedColor(0xff1abc9c)
                 .setWrapper(0)
         );
         items.add(new RFACLabelItem<Integer>()
                 .setLabel("Xóa tất cả")
-                .setResId(R.drawable.ic_deleteall)
-                .setIconNormalColor(0xffe74c3c)
+                .setResId(R.drawable.delete_all)
+                .setIconNormalColor(0xfff36159)
                 .setIconPressedColor(0xffe67e22)
                 .setWrapper(1)
         );
@@ -121,11 +123,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle("Danh sách bài thi");
     }
 
+    private void viewerSQLite() {
+        Stetho.initialize(Stetho.newInitializerBuilder(this)
+                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                .build());
+    }
+
     private void KiemTraVaTaoMau() {
         MauTraLoiDatabase mauTraLoiDatabase = new MauTraLoiDatabase(getApplicationContext());
-        mauTraLoiDatabase.deleteAll();
         if (mauTraLoiDatabase.TatCaMauTraLoi().size()<3){
-
+            mauTraLoiDatabase.deleteAll();
             mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(1,"BW50",50,3));
             mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(2,"BW60",60,3));
             mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(3,"BW80",80,4));
@@ -139,8 +147,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(4,1,664,320,432,156,4,17));
             khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(5,1,664,52,432,156,4,17));
 
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(6,2,176,68,252,80,3,10));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(7,2,176,172,252,160,6,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(6,2,184,68,252,80,3,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(7,2,184,172,252,160,6,10));
             khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(8,2,568,576,508,148,4,20));
             khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(9,2,568,328,508,148,4,20));
             khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(10,2,568,76,504,148,4,20));
@@ -209,10 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             rfaLayout.setVisibility(View.INVISIBLE);
             toolbar.setTitle("Hướng dẫn");
         } else if (id == R.id.nav_caidat && previous_selected != id) {
-            Intent mySetting = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(mySetting);
-            item.setChecked(false);
-            navigationView.getMenu().getItem(0).setChecked(true);
+            Toast.makeText(this, "Cài đặt hiện chưa khả dụng", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share && previous_selected != id) {
             Toast.makeText(this, "Chia sẻ ứng dụng ngay!", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_fb && previous_selected != id) {
@@ -263,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void onStorageGranted() {
-        FileUtils.checkMakeDirs(SC.STORAGE_TECHNO);
+        FileUtils.checkMakeDirs(SC.STORAGE_PROJECT);
     }
     public void exitApp(){
         System.gc();

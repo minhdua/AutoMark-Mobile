@@ -4,7 +4,7 @@
     <string name="title_home">Home</string>
     <string name="title_scan_omr">Scan OMR</string>
     <string name="title_more">More</string>
-    <string name="app_name">Chấm điểm tự động</string>
+    <string name="app_name">Chấm Thi Trắc Nghiệm</string>
     <string name="camera_activity_permission_denied_toast">Please go to app settings and grant camera permission</string>
     <!--<string name="finding_rect">I can\'t see a sheet</string>-->
     <string name="finding_rect">Mujhe Sheet Dikhao!</string>

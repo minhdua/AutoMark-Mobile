@@ -3,9 +3,9 @@
 
     <stroke
         android:width="0.5dip"
-        android:color="@color/colorAccent" />
-    <gradient android:startColor="#74b9ff"
-        android:endColor="#55efc4"/>
+        android:color="@color/colorBlackThirtyFivePercentAlpha" />
+    <gradient android:startColor="@color/white"
+        android:endColor="@color/white"/>
     <padding
         android:left="1sp"
         android:right="1sp"

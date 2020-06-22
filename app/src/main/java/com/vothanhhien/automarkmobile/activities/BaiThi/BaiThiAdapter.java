@@ -1,5 +1,6 @@
-package com.vothanhhien.automarkmobile.activities.Main;
+package com.vothanhhien.automarkmobile.activities.BaiThi;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+//import com.ajts.androidmads.library.SQLiteToExcel;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -24,13 +26,12 @@ import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.vothanhhien.automarkmobile.R;
 import com.vothanhhien.automarkmobile.activities.DapAn.DanhSachDapAn;
+import com.vothanhhien.automarkmobile.activities.Main.MainActivity;
 import com.vothanhhien.automarkmobile.activities.PhieuTraLoi.DsPhieuTraLoi;
-import com.vothanhhien.automarkmobile.models.MauTraLoi;
 import com.vothanhhien.automarkmobile.sqlite.MauTraLoiDatabase;
 import com.vothanhhien.automarkmobile.sqlite.PhieuTraLoiDatabase;
-import com.vothanhhien.automarkmobile.activities.TuyChon.ChamDiemActivity;
+import com.vothanhhien.automarkmobile.activities.Main.ChamDiemActivity;
 import com.vothanhhien.automarkmobile.models.BaiThi;
-import com.vothanhhien.automarkmobile.sqlite.BaiThiDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -53,6 +54,7 @@ public class BaiThiAdapter extends ArrayAdapter<BaiThi> implements View.OnClickL
         this.mauTraLoiDatabase = new MauTraLoiDatabase(context);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // lấy bài thi tại vị trí position
@@ -64,11 +66,11 @@ public class BaiThiAdapter extends ArrayAdapter<BaiThi> implements View.OnClickL
         NgayTao = convertView.findViewById(R.id.ngay_tao);
 
         if (mauTraLoiDatabase.LayIdMau((int) baiThi.getLoaiDe()).getSoCauTraLoi() == 50)
-            LoaiGiayThi.setImageResource(R.drawable.nammuoi);
+            LoaiGiayThi.setImageResource(R.drawable.nam_muoi);
         else if (mauTraLoiDatabase.LayIdMau((int) baiThi.getLoaiDe()).getSoCauTraLoi() == 60)
-            LoaiGiayThi.setImageResource(R.drawable.saumuoi);
+            LoaiGiayThi.setImageResource(R.drawable.sau_muoi);
         else if (mauTraLoiDatabase.LayIdMau((int) baiThi.getLoaiDe()).getSoCauTraLoi() == 80)
-            LoaiGiayThi.setImageResource(R.drawable.tammuoi);
+            LoaiGiayThi.setImageResource(R.drawable.tam_muoi);
 
         if (baiThi.getTen().length() <= 20)
             TenKyThi.setText(baiThi.getTen());
@@ -97,13 +99,14 @@ public class BaiThiAdapter extends ArrayAdapter<BaiThi> implements View.OnClickL
         bmb.setButtonEnum(ButtonEnum.Ham);
         bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_6_1);
         bmb.setButtonPlaceEnum(ButtonPlaceEnum.Vertical);
-        bmb.setCancelable(false);
+        bmb.setCancelable(true);
         for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++) {
             HamButton.Builder builder;
             switch (i) {
                 case 0:
                     builder = new HamButton.Builder()
                             .normalImageRes(R.drawable.dap_an)
+                            .normalColorRes(R.color.colorPrimaryDark)
                             .normalText("Đáp án")
                             .subNormalText("Thêm/Sửa đáp án cho bài thi!")
                             .listener(new OnBMClickListener() {
@@ -117,6 +120,7 @@ public class BaiThiAdapter extends ArrayAdapter<BaiThi> implements View.OnClickL
                     break;
                 case 1:
                     builder = new HamButton.Builder()
+                            .normalColorRes(R.color.colorPrimaryDark)
                             .normalImageRes(R.drawable.cham_bai)
                             .normalText("Chấm bài")
                             .subNormalText("Thực hiện thao tác chấm thi!")
@@ -132,6 +136,7 @@ public class BaiThiAdapter extends ArrayAdapter<BaiThi> implements View.OnClickL
                     break;
                 case 2:
                     builder = new HamButton.Builder()
+                            .normalColorRes(R.color.colorPrimaryDark)
                             .normalImageRes(R.drawable.xem_lai)
                             .normalText("Xem lại")
                             .subNormalText("Xem lại danh sách bài thi đã chấm!")
@@ -146,20 +151,46 @@ public class BaiThiAdapter extends ArrayAdapter<BaiThi> implements View.OnClickL
                     break;
                 case 3:
                     builder = new HamButton.Builder()
+                            .normalColorRes(R.color.colorPrimaryDark)
                             .normalImageRes(R.drawable.thong_ke)
-                            .normalText("Thống kê")
-                            .subNormalText("Lấy số liệu thống kê về bài thi này!")
+                            .normalText("Xuất excel")
+                            .subNormalText("Xuất kết quả cho bài thi này!")
                             .listener(new OnBMClickListener() {
                                 @Override
                                 public void onBoomButtonClick(int index) {
+                                    //create the sqLiteToExcel object
+//                                    String directory_path = SC.CURR_DIR;
+//                                    File file = new File(directory_path);
+//                                    if (!file.exists()) {
+//                                        file.mkdirs();
+//                                    }
+
+//                                    SQLiteToExcel sqliteToExcel = new SQLiteToExcel(getContext(), BaiThiHelper.TABLE_BaiThi, SC.CURR_DIR);
+//                                    sqliteToExcel.exportAllTables(baiThi.getTen() + ".xls", new SQLiteToExcel.ExportListener() {
+//                                                @Override
+//                                                public void onStart() {
+//
+//                                                }
+//
+//                                                @Override
+//                                                public void onCompleted(String filePath) {
+//
+//                                                }
+//
+//                                                @Override
+//                                                public void onError(Exception e) {
+//
+//                                                }
+//                                            });
 //                                    Intent thongKe = new Intent(mContext, ThongKeActivity.class)
 //                                            .putExtra("BaiThi", baiThi);
 //                                    mContext.startActivity(thongKe);
-                                }
+                                };
                             });
                     break;
                 case 4:
                     builder = new HamButton.Builder()
+                            .normalColorRes(R.color.colorPrimaryDark)
                             .normalImageRes(R.drawable.thong_tin)
                             .normalText("Thông tin")
                             .subNormalText("Thông tin của bài thi này!")
@@ -172,6 +203,7 @@ public class BaiThiAdapter extends ArrayAdapter<BaiThi> implements View.OnClickL
                     break;
                 case 5:
                     builder = new HamButton.Builder()
+                            .normalColorRes(R.color.colorPrimaryDark)
                             .normalImageRes(R.drawable.dong)
                             .normalText("Đóng")
                             .subNormalText("Đóng danh sách lựa chọn!");

@@ -2,6 +2,7 @@ package com.vothanhhien.automarkmobile.activities.NhapDapAn.Hand;
 
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -11,6 +12,7 @@ import com.vothanhhien.automarkmobile.R;
 
 
 public class DapAn_Holder extends RecyclerView.ViewHolder {
+    LinearLayout choices;
     CardView cv;
     TextView n;
     TextView a;
@@ -21,6 +23,7 @@ public class DapAn_Holder extends RecyclerView.ViewHolder {
     public DapAn_Holder(View itemView) {
         super(itemView);
         this.n = (TextView) itemView.findViewById(R.id.number);
+        this.choices =  itemView.findViewById(R.id.choices);
         this.a = (TextView) itemView.findViewById(R.id.a);
         this.b = (TextView) itemView.findViewById(R.id.b);
         this.c = (TextView) itemView.findViewById(R.id.c);

@@ -256,6 +256,7 @@ public class Utils {
                 Imgproc.blur(processedMat, processedMat, new Size(SC.KSIZE_BLUR, SC.KSIZE_BLUR));
             }
             normalize(processedMat);
+
             if(SC.CLAHE_ON) {
                 clahe.apply(processedMat, processedMat);
             }
@@ -590,15 +591,8 @@ public class Utils {
     }
     public static Mat drawAnswers(Mat image, List<LuaChon> luaChons){
         for(LuaChon luaChon : luaChons){
-//            Imgproc.rectangle (image,new Point(choice.getDrawX(),choice.getDrawY()),
-//                    new Point(choice.getDrawX()+SC.RATIO,choice.getDrawX()+SC.RATIO),       //p2
-//                    new Scalar(0, 255, 0),
-//                    2
-//            );
-
             Imgproc.circle (
-                    image,new Point(luaChon.getDrawX()+(int) SC.RATIO/2, luaChon.getDrawY()+(int) SC.RATIO/2),
-                    (int) SC.RATIO/2, luaChon.getColor(),-1);
+                    image,new Point(luaChon.getDrawX(), luaChon.getDrawY()), (int) SC.RATIO/2, luaChon.getColor(),-1);
         }
         return image;
     }
@@ -651,23 +645,26 @@ public class Utils {
 
     }
 
-    public static void drawAllChoice(Mat image,List<KhungTraLoi> khungs){
+    public static Mat drawAllChoice(Mat image,List<KhungTraLoi> khungs){
 
         List<LuaChon> luaChons = new ArrayList<>();
         for (int i = 0; i< khungs.size(); i++){
             int X = khungs.get(i).getX();
             int Y = khungs.get(i).getY();
-            int dx = khungs.get(i).getWidth()/ khungs.get(i).getRows();
-            int dy = khungs.get(i).getHeight()/ khungs.get(i).getCols();
-            for (int row = 0; row< khungs.get(i).getRows(); row++){
-                for(int col = 0; col< khungs.get(i).getCols(); col++){
+            int rows = khungs.get(i).getRows();
+            int cols = khungs.get(i).getCols();
+            int width = khungs.get(i).getWidth();
+            int height = khungs.get(i).getHeight();
+            int dx = width/rows;
+            int dy =height/cols;
+            for (int row = 0; row< rows; row++){
+                for(int col = 0; col< cols; col++){
                     LuaChon luaChon = new LuaChon(row,col,X+row*dx+dx/2,Y+col*dy+dy/2);
-                    luaChon.setColor(new Scalar(0));
+                    luaChon.setColor(new Scalar(255,0,0));
                     luaChons.add(luaChon);
                 }
-
             }
         }
-        drawAnswers(image, luaChons);
+        return drawAnswers(image, luaChons);
     }
 }

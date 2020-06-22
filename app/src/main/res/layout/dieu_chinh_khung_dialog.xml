@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="10dp"
+xmlns:numberpicker="http://schemas.android.com/apk/res-auto">
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khung : "
+            android:layout_gravity="center"
+            android:textColor="#9F9F9F"
+            android:textSize="@dimen/text_size_18" />
+        <Spinner
+            android:id="@+id/spinnerKhung"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X : "
+            android:layout_gravity="center"
+            android:textColor="#9F9F9F"
+            android:textSize="@dimen/text_size_18" />
+        <com.travijuu.numberpicker.library.NumberPicker
+            android:id="@+id/number_pickerX"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            numberpicker:min="0"
+            numberpicker:max="1200"
+            numberpicker:value="0"
+            numberpicker:unit="1"
+            numberpicker:focusable="true"
+            numberpicker:custom_layout="@layout/number_picker_layout" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y : "
+            android:layout_gravity="center"
+            android:textColor="#9F9F9F"
+            android:textSize="@dimen/text_size_18" />
+        <com.travijuu.numberpicker.library.NumberPicker
+            android:id="@+id/number_pickerY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            numberpicker:min="0"
+            numberpicker:max="840"
+            numberpicker:value="0"
+            numberpicker:unit="1"
+            numberpicker:focusable="true"
+            numberpicker:custom_layout="@layout/number_picker_layout" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Width: "
+            android:layout_gravity="center"
+            android:textColor="#9F9F9F"
+            android:textSize="@dimen/text_size_18" />
+        <com.travijuu.numberpicker.library.NumberPicker
+            android:id="@+id/number_pickerWidth"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            numberpicker:min="0"
+            numberpicker:max="1200"
+            numberpicker:value="0"
+            numberpicker:unit="1"
+            numberpicker:focusable="true"
+            numberpicker:custom_layout="@layout/number_picker_layout" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Height: "
+            android:layout_gravity="center"
+            android:textColor="#9F9F9F"
+            android:textSize="@dimen/text_size_18" />
+        <com.travijuu.numberpicker.library.NumberPicker
+            android:id="@+id/number_pickerHeight"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            numberpicker:min="0"
+            numberpicker:max="840"
+            numberpicker:value="0"
+            numberpicker:unit="1"
+            numberpicker:focusable="true"
+            numberpicker:custom_layout="@layout/number_picker_layout" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cols: "
+            android:layout_gravity="center"
+            android:textColor="#9F9F9F"
+            android:textSize="@dimen/text_size_18" />
+        <com.travijuu.numberpicker.library.NumberPicker
+            android:id="@+id/number_pickerCols"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            numberpicker:min="0"
+            numberpicker:max="25"
+            numberpicker:value="0"
+            numberpicker:unit="1"
+            numberpicker:focusable="true"
+            numberpicker:custom_layout="@layout/number_picker_layout" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rows: "
+            android:layout_gravity="center"
+            android:textColor="#9F9F9F"
+            android:textSize="@dimen/text_size_18" />
+        <com.travijuu.numberpicker.library.NumberPicker
+            android:id="@+id/number_pickerRows"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            numberpicker:min="0"
+            numberpicker:max="50"
+            numberpicker:value="0"
+            numberpicker:unit="1"
+            numberpicker:focusable="true"
+            numberpicker:custom_layout="@layout/number_picker_layout" />
+    </TableRow>
+</TableLayout>

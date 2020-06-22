@@ -1,5 +1,7 @@
 package org.opencv.core;
 
+import java.io.Serializable;
+
 // C++: class Mat
 //javadoc: Mat
 public class Mat {

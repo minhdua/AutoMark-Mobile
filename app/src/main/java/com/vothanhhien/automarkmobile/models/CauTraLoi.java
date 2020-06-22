@@ -9,7 +9,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
-import java.text.ChoiceFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -94,7 +93,8 @@ public class CauTraLoi {
 
         Rect rect = new Rect(x, y, w, h);
         Mat sub_image = image.submat(rect);
-        FileUtils.saveMat(sub_image, SC.CURR_DIR,"image_sub"+SC.getcount()+".jpg");
+        int count = SC.getcount();
+//        FileUtils.saveMat(sub_image, SC.CURR_DIR,"image_sub"+SC.getcount()+".jpg");
 
         // get number zero at each cell
         ArrayList<List<Cell>> filled = new ArrayList<>();
@@ -102,14 +102,14 @@ public class CauTraLoi {
         List<Cell> cells = new ArrayList<>();
         for (int i=0 ; i<rows;i++){
             for (int j=0;j<cols;j++){
-                int x = x0+dx*i;
-                int y = y0+dy*j;
-                Rect cellRect = new Rect(x,y,dx,dy);
+                int _x = x0+dx*i;
+                int _y = y0+dy*j;
+                Rect cellRect = new Rect(_x,_y,dx,dy);
                 Mat cellMat = sub_image.submat(cellRect);
-                FileUtils.saveMat(cellMat, SC.CURR_DIR,"cell mat"+i+"-"+j+".jpg");
+//                FileUtils.saveMat(cellMat, SC.CURR_DIR,count+"cell mat"+i+"-"+j+".jpg");
                 Cell cell = countZero(cellMat);
-                cell.setX(cell.getX()+x);
-                cell.setY(cell.getY()+y);
+                cell.setX(cell.getX()+_x);
+                cell.setY(cell.getY()+_y);
                 cells.add(cell);
             }
             filled.get(i).addAll(cells);
@@ -122,7 +122,7 @@ public class CauTraLoi {
             for(int j =0;j<cols;j++){
                 cell = filled.get(i).get(j);
                 if(cell.getZeroCount()>= SC.ZEROCOUNT_THRESH){
-                    LuaChon luaChon = new  LuaChon(i + rows*order,j,cell.getX()+this.x,cell.getY()+this.y);
+                    LuaChon luaChon = new  LuaChon(i + rows*order,j,cell.getX()+x+SC.RATIO/2,cell.getY()+y+SC.RATIO/2);
                     luaChon.setZeroCount(cell.getZeroCount());
                     answers.add(luaChon);
                 }

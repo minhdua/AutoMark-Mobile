@@ -1,4 +1,4 @@
-package com.vothanhhien.automarkmobile.sqlite;
+package com.vothanhhien.automarkmobile.activities.BaiThi;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

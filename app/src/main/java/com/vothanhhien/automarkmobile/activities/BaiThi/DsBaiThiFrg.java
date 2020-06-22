@@ -1,4 +1,4 @@
-package com.vothanhhien.automarkmobile.activities.Main;
+package com.vothanhhien.automarkmobile.activities.BaiThi;
 
 
 import android.os.Bundle;
@@ -12,12 +12,8 @@ import androidx.fragment.app.Fragment;
 
 import com.vothanhhien.automarkmobile.R;
 import com.vothanhhien.automarkmobile.models.BaiThi;
-import com.vothanhhien.automarkmobile.sqlite.BaiThiDatabase;
 
 import java.util.ArrayList;
-
-
-import static java.security.AccessController.getContext;
 
 public class DsBaiThiFrg extends Fragment {
 

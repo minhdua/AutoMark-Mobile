@@ -1,4 +1,4 @@
-package com.vothanhhien.automarkmobile.activities;
+package com.vothanhhien.automarkmobile.activities.KetQua;
 
 import android.content.Context;
 

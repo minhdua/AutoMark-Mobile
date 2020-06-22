@@ -4,7 +4,7 @@ import android.os.Environment;
 
 import com.mohammedalaa.seekbar.RangeSeekBarView;
 import com.vothanhhien.automarkmobile.R;
-import com.vothanhhien.automarkmobile.activities.TuyChon.ChamDiemActivity;
+import com.vothanhhien.automarkmobile.activities.Main.ChamDiemActivity;
 import com.vothanhhien.automarkmobile.models.CauTraLoi;
 
 import org.opencv.core.Mat;
@@ -71,9 +71,9 @@ public class SC {
 
     private static final String TAG = SC.class.getSimpleName();
 
-    public static final String TECHNO_DIR = "AutoMarkMobile/";
+    public static final String PROJECT_DIR = "AutoMarkMobile/";
     public static final String STORAGE_HOME =  Environment.getExternalStorageDirectory().getAbsolutePath() +"/";
-    public static final String STORAGE_TECHNO =  STORAGE_HOME + TECHNO_DIR;
+    public static final String STORAGE_PROJECT =  STORAGE_HOME + PROJECT_DIR ;
     public static final FileFilter jpgFilter  = new FileFilter() {
         @Override
         public boolean accept(File pathname) {
@@ -83,10 +83,10 @@ public class SC {
         }
     };
 
-    public static String INPUT_DIR = TECHNO_DIR + "JE/";
-    public static String INPUT_ORIG_DIR =TECHNO_DIR+"JE/"+ "_Original";
-    public static String INPUT_ERROR_DIR =TECHNO_DIR+"JE/"+ "_Error";
-    public static String INPUT_CROP_DIR =TECHNO_DIR+"JE/"+ "_Crop";
+    public static String INPUT_DIR = PROJECT_DIR  + "JE/";
+    public static String INPUT_ORIG_DIR =PROJECT_DIR +"JE/"+ "_Original";
+    public static String INPUT_ERROR_DIR =PROJECT_DIR +"JE/"+ "_Error";
+    public static String INPUT_CROP_DIR =PROJECT_DIR +"JE/"+ "_Crop";
     public static String IMAGE_PREFIX = "Image_";
     public static String CURR_DIR =  STORAGE_HOME + INPUT_DIR;
     public static String CURR_ORIG_DIR =  STORAGE_HOME + INPUT_ORIG_DIR;

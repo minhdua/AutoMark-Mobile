@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/nammuoi"
+            android:src="@drawable/nam_muoi"
             android:layout_margin="5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,7 +132,7 @@
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/saumuoi"
+            android:src="@drawable/sau_muoi"
             android:layout_margin="5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -244,7 +244,7 @@
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/tammuoi"
+            android:src="@drawable/tam_muoi"
             android:layout_margin="5dp"/>
         <LinearLayout
             android:layout_width="match_parent"

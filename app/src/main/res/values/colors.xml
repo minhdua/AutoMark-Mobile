@@ -4,7 +4,7 @@
     <color name="colorWhite">#fff</color>
     <color name="blue_overlay">#3498db</color>
     <color name="colorPrimary">#3498db</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#000551</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlackFortyPercentAlpha">#66000000</color>
     <color name="black">#000000</color>
@@ -12,12 +12,12 @@
     <color name="dark_gray">#20FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#ff2600</color>
+    <color name="error">#FCC1BB</color>
     <color name="alpha_red">#65ff2600</color>
     <color name="green">#26d84c</color>
     <color name="dark_green">#005800</color>
     <color name= "orange">#ff9c00</color>
     <color name="edge_color">#00d1fe</color>
-    <color name="crop_color">#00d1fe</color>
     <color name="colorBlackThirtyFivePercentAlpha">#59000000</color>
     <color name="holo_gray_bright">#33CCCCCC</color>
     <color name="transparent">#00FFFFFF</color>
@@ -27,4 +27,8 @@
     <color name="color_blue">#007dff</color>
     <color name="color_yellow">#FFFF00</color>
     <color name="color_pink">#FF00FF</color>
+    <color name="mau_nenseekbar">#B7BCF7</color>
+    <color name="nen_trai">#080D4A</color>
+    <color name="text_seekbar">#ffffff</color>
+    <color name="nen_toggle">#080D4A</color>
 </resources>

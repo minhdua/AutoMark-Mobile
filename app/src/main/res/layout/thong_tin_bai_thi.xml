@@ -44,11 +44,11 @@
         android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:src="@drawable/name_test" />
+<!--        <ImageView-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/name_test" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="TÊN:"
                 android:textAlignment="center"
-                android:textColor="#16a085"
+                android:textColor="#9F9F9F"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:text="Kiểm tra 15 phút CTDL và GT"
-                android:textColor="#16a085"
+                android:textColor="#3AAAFF"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -88,8 +88,8 @@
         android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="20dp"
+<!--        <ImageView-->
+<!--            android:layout_width="20dp"-->
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:src="@drawable/calendar" />
@@ -107,7 +107,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="TẠO LÚC:"
                 android:textAlignment="center"
-                android:textColor="#16a085"
+                android:textColor="#9F9F9F"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -118,7 +118,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:text="17h00 14/03/1998"
-                android:textColor="#16a085"
+                android:textColor="#3AAAFF"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -132,11 +132,11 @@
         android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:src="@drawable/x_paper" />
+<!--        <ImageView-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/x_paper" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -151,7 +151,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="LOẠI GIẤY:"
                 android:textAlignment="center"
-                android:textColor="#16a085"
+                android:textColor="#9F9F9F"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -162,7 +162,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:text="100 câu"
-                android:textColor="#16a085"
+                android:textColor="#3AAAFF"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -176,11 +176,11 @@
         android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:src="@drawable/x_number" />
+<!--        <ImageView-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/x_number" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -195,7 +195,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="SỐ CÂU:"
                 android:textAlignment="center"
-                android:textColor="#16a085"
+                android:textColor="#9F9F9F"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -206,7 +206,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:text="100 câu"
-                android:textColor="#16a085"
+                android:textColor="#3AAAFF"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -220,11 +220,11 @@
         android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:src="@drawable/thong_ke" />
+<!--        <ImageView-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/thong_ke" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -239,7 +239,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="SỐ BÀI ĐÃ CHẤM:"
                 android:textAlignment="center"
-                android:textColor="#16a085"
+                android:textColor="#9F9F9F"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -250,7 +250,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="right"
                 android:text="50 bài"
-                android:textColor="#16a085"
+                android:textColor="#3AAAFF"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>

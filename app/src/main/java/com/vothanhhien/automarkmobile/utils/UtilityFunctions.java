@@ -76,7 +76,7 @@ public class UtilityFunctions {
         int dy = khung.getHeight()/khung.getCols();
 
         // xác định tọa độ trung tâm
-        int Xcenter = khung.getX()+dx*(i%soHang) + dx/2;
+        int Xcenter = khung.getX()+dx*(i%soHang) +dx/2;
         int Ycenter = khung.getY()+dy*(khung.getCols() - j) +dy/2;
 
         return new Pair<Integer, Integer>(Xcenter,Ycenter);
@@ -149,7 +149,7 @@ public class UtilityFunctions {
                 LuaChon luaChonSai = luaChonThiSinh.get(i);
                 luaChonSai.setColor(new Scalar(255,0,0)); // to mau do
                 LuaChon dapAn = luaChonDung.get(i);
-                dapAn.setColor(new Scalar(100,100,100));
+                dapAn.setColor(new Scalar(0,0,255,255));
                 result.add(luaChonSai);
                 result.add(dapAn);
             }

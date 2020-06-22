@@ -1,4 +1,4 @@
-package com.vothanhhien.automarkmobile.sqlite;
+package com.vothanhhien.automarkmobile.activities.BaiThi;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.vothanhhien.automarkmobile.models.BaiThi;
+import com.vothanhhien.automarkmobile.sqlite.DapAnDatabase;
+import com.vothanhhien.automarkmobile.sqlite.MauTraLoiDatabase;
+import com.vothanhhien.automarkmobile.sqlite.PhieuTraLoiDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,10 +18,12 @@ import java.util.ArrayList;
 public class BaiThiDatabase {
     private SQLiteDatabase database;
     private BaiThiHelper dbHelper;
+    private Context context;
 
     // Phương thức kiểm tra và tạo bảng nếu chưa có đồng thời cũng là phương thức khởi tạo
     public BaiThiDatabase(Context myContext) {
         this.dbHelper = new BaiThiHelper(myContext);
+        context = myContext;
         this.database = this.dbHelper.getWritableDatabase();
     }
 
@@ -68,9 +73,10 @@ public class BaiThiDatabase {
     // Phương thức để lấy bài thi có mã là id
     public BaiThi LayBaiThi(int id) {
         this.database = this.dbHelper.getReadableDatabase();
-        Cursor myCursor = this.database.query(true, this.dbHelper.TABLE_BaiThi, new String[]
-                        {this.dbHelper.ID, this.dbHelper.TEN, this.dbHelper.NGAY_TAO, this.dbHelper.LOAI_GIAY, this.dbHelper.SO_CAU, this.dbHelper.HE_DIEM},
-                this.dbHelper.ID + "=?", new String[]{Integer.toString(id)}, null, null, null, null, null);
+        Cursor myCursor = this.database.query(this.dbHelper.TABLE_BaiThi,null,this.dbHelper.ID + "= '"+id+"'", null,null,null,null,null);
+//        Cursor myCursor = this.database.query(true, this.dbHelper.TABLE_BaiThi, new String[]
+//                        {this.dbHelper.ID, this.dbHelper.TEN, this.dbHelper.NGAY_TAO, this.dbHelper.LOAI_GIAY, this.dbHelper.SO_CAU, this.dbHelper.HE_DIEM},
+//                this.dbHelper.ID + "=?", new String[]{id+""}, null, null, null, null, null);
         if (myCursor != null)
             myCursor.moveToFirst();
         return new BaiThi(myCursor.getString(0), myCursor.getString(1)
@@ -109,6 +115,10 @@ public class BaiThiDatabase {
         if (mCursor.getCount() == 0) {
             return -1;
         }
+        DapAnDatabase dapAnDatabase = new DapAnDatabase(context);
+        PhieuTraLoiDatabase phieuTraLoiDatabase = new PhieuTraLoiDatabase(context);
+        dapAnDatabase.deleteAll(id);
+        phieuTraLoiDatabase.XoaTatCaPhieuTraLoi(id);
         return (long) this.database.delete(this.dbHelper.TABLE_BaiThi, this.dbHelper.ID + "=?", new String[]{Integer.toString(id)});
     }
 

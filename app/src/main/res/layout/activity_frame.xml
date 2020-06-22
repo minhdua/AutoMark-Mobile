@@ -5,26 +5,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
-    xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.TuyChon.CaiDatActivity">
-    <RelativeLayout
+    xmlns:numberpicker="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/container_options">
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="?android:attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            tools:ignore="NewApi" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_options"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
         <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
             android:id="@+id/options_layout"
             >
             <TableRow
-                android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"     >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Type Frame: "
+                    android:text="Khung : "
                     style="@style/TextShadow"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="#9F9F9F"
                     android:textSize="@dimen/text_size_18" />
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/spinnerTypeFrame"
@@ -32,14 +49,15 @@
                     android:layout_height="wrap_content"/>
             </TableRow>
             <TableRow
-                android:layout_marginTop="10dp">
+                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"     >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="X : "
                     style="@style/TextShadow"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="#9F9F9F"
                     android:textSize="@dimen/text_size_18" />
                 <com.travijuu.numberpicker.library.NumberPicker
                     android:id="@+id/number_pickerX"
@@ -53,14 +71,15 @@
                     numberpicker:custom_layout="@layout/number_picker_layout" />
             </TableRow>
             <TableRow
-                android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"      >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Y : "
                     style="@style/TextShadow"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="#9F9F9F"
                     android:textSize="@dimen/text_size_18" />
                 <com.travijuu.numberpicker.library.NumberPicker
                     android:id="@+id/number_pickerY"
@@ -74,14 +93,15 @@
                     numberpicker:custom_layout="@layout/number_picker_layout" />
             </TableRow>
             <TableRow
-                android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"      >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Width: "
                     style="@style/TextShadow"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="#9F9F9F"
                     android:textSize="@dimen/text_size_18" />
                 <com.travijuu.numberpicker.library.NumberPicker
                     android:id="@+id/number_pickerWidth"
@@ -95,14 +115,15 @@
                     numberpicker:custom_layout="@layout/number_picker_layout" />
             </TableRow>
             <TableRow
-                android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"      >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Height: "
                     style="@style/TextShadow"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="#9F9F9F"
                     android:textSize="@dimen/text_size_18" />
                 <com.travijuu.numberpicker.library.NumberPicker
                     android:id="@+id/number_pickerHeight"
@@ -116,14 +137,15 @@
                     numberpicker:custom_layout="@layout/number_picker_layout" />
             </TableRow>
             <TableRow
-                android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"      >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cols: "
                     style="@style/TextShadow"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="#9F9F9F"
                     android:textSize="@dimen/text_size_18" />
                 <com.travijuu.numberpicker.library.NumberPicker
                     android:id="@+id/number_pickerCols"
@@ -137,14 +159,15 @@
                     numberpicker:custom_layout="@layout/number_picker_layout" />
             </TableRow>
             <TableRow
-                android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"      >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rows: "
                     style="@style/TextShadow"
                     android:layout_gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="#9F9F9F"
                     android:textSize="@dimen/text_size_18" />
                 <com.travijuu.numberpicker.library.NumberPicker
                     android:id="@+id/number_pickerRows"
@@ -158,37 +181,6 @@
                     numberpicker:custom_layout="@layout/number_picker_layout" />
             </TableRow>
         </TableLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/buttons_control"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp">
-        <ImageView
-            android:id="@+id/imageViewSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="10dp"
-            android:src="@drawable/ic_save_black_24dp" />
-        <ImageView
-            android:id="@+id/imageViewCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="10dp"
-            android:src="@drawable/ic_check_circle_black_24dp" />
-        <ImageView
-            android:id="@+id/imageViewClear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="10dp"
-            android:src="@drawable/ic_clear_all_black_24dp"
-            android:clickable="true"/>
-        </LinearLayout>
     </RelativeLayout>
         <ImageView
             android:id="@+id/imageViewDisplay"

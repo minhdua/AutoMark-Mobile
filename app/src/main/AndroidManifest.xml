@@ -9,11 +9,15 @@
     <uses-feature android:name="android.hardware.camera" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_chamthi"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".activities.Fix.FixLocation"
+            android:label="Chỉnh sửa vị trí"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.NhapDapAn.Hand.MakeActivity"
             android:label="Đáp án cho đề 1234"
@@ -31,7 +35,7 @@
             android:label="Xem kết quả"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.Main.MainActivity"
-            android:label="Danh sách bài thi"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             >
             <intent-filter>
@@ -42,7 +46,7 @@
 <!--        <activity android:name=".activities.SettingsActivity">-->
 <!--            -->
 <!--        </activity>-->
-        <activity android:name=".activities.TuyChon.ChamDiemActivity"
+        <activity android:name=".activities.Main.ChamDiemActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

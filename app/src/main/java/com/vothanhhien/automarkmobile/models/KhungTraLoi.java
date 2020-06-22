@@ -23,7 +23,14 @@ public class KhungTraLoi {
     public KhungTraLoi(){
 
     }
-
+    public void capnhat(int x, int y, int width, int height, int cols, int rows){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.cols = cols;
+        this.rows = rows;
+    }
     public long getId() {
         return id;
     }

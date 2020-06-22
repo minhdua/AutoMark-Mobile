@@ -11,6 +11,6 @@
 
     <stroke
         android:width="2dp"
-        android:color="@color/crop_color" />
+        android:color="@color/edge_color" />
 
 </shape>

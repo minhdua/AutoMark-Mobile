@@ -134,7 +134,11 @@ public class DapAnDatabase {
                 null, null, null, null);
         if (myCursor != null)
             myCursor.moveToFirst();
-        return new DapAn(myCursor.getString(0),
+            String _id = myCursor.getString(0);
+            String _baithi =myCursor.getString(1);
+            String _made =myCursor.getString(2);
+            String _dapAn =myCursor.getString(3);
+        return new DapAn( myCursor.getString(0),
                 myCursor.getString(1),
                 myCursor.getString(2),
                 myCursor.getString(3));

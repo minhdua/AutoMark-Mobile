@@ -56,8 +56,8 @@ public class Setting {
     public static final String applicationName = "Chấm Thi";
     public static final String applicationVersion = "v1.0";
     public static final String applicationPublicDay = "Ngày 10 tháng 9 năm 2018";
-    public static final String applicationAuthorEmail = "projects.futuresky@gmail.com";
-    public static final String applicationAuthorFacebook = "https://facebook.com/tx.trongnghia98";
+    public static final String applicationAuthorEmail = "hienb1606980@student.ctu.edu.vn";
+    public static final String applicationAuthorFacebook = "https://www.facebook.com/hienb1606980";
     // Danh sách khóa của setting
     public static final String keySimplify = "setting_simplify";
     public static final String keyUpdate = "setting_update";

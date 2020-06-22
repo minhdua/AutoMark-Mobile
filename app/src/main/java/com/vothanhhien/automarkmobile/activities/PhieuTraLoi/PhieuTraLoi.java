@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.vothanhhien.automarkmobile.activities.ScoreRank;
+import com.vothanhhien.automarkmobile.activities.KetQua.ScoreRank;
 
 import java.io.Serializable;
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.vothanhhien.automarkmobile.BuildConfig;
+import com.vothanhhien.automarkmobile.constants.BuildConfig;
 
 
 public class DapAnHelper extends SQLiteOpenHelper {

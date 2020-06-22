@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
+
     <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -74,6 +75,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_gravity="bottom|end"
                 android:gravity="end|bottom"
+                android:visibility="gone"
                 >
                 <com.nightonke.jellytogglebutton.JellyToggleButton
                     android:id="@+id/xray_btn"
@@ -274,6 +276,10 @@
                 </LinearLayout>
             </FrameLayout>
         </FrameLayout>
+        <include
+            layout="@layout/app_bar_camera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <LinearLayout
             android:layout_width="5dp"
             android:layout_height="match_parent"
