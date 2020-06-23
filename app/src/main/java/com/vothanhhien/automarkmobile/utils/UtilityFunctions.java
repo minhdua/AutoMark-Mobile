@@ -98,12 +98,13 @@ public class UtilityFunctions {
         int j = 0; int i = -1;
         while((tuyChons.size()<questionCount) && (j<answers.size())){
             // Nếu thứ tự các tùy chọn tiếp theo bằng với thứ tự tùy chọn
-            if(i+1 == (answers.get(j).getiChoice()%questionCount)){
+            int i_choice = answers.get(j).getiChoice()%questionCount;
+            if(i+1 == i_choice){
                 // thêm lựa chọn của thí sinh vào tùy chọn
                 LuaChon luaChon = new LuaChon(i+1,answers.get(j).getjChoice(),answers.get(j).getDrawX(),answers.get(j).getDrawY());
                 tuyChons.add(luaChon);
                 j++; i++;
-            }else if (i + 1 < answers.get(j).getiChoice() )// Nếu thứ tự tùy chọn tiếp theo lớn hơn thứ tự tùy chọn(không có lựa chọn nào)
+            }else if (i+1< i_choice )// Nếu thứ tự tùy chọn tiếp theo lớn hơn thứ tự tùy chọn(không có lựa chọn nào)
             {
                // Ta bổ sung thêm tùy chọn và giá giá trị là -1
                 LuaChon luaChon = new LuaChon(i+1,-1,answers.get(j).getDrawX(),answers.get(j).getDrawY());
@@ -113,8 +114,8 @@ public class UtilityFunctions {
             else{ // Nếu tùy chọn tiếp theo nhỏ hơn thứ tự tùy chọn (có nhiều hơn 1 lựa chọn)
                 // Ta không lưu lại đáp án này đồng thời gán nó với tùy chọn trước đó giá trị -1
                 tuyChons.get(i).setjChoice(-1);
-                answers.get(j).setColor(new Scalar(255,0,0));
                 answers.get(j-1).setColor(new Scalar(255,0,0));
+                answers.get(j).setColor(new Scalar(255,0,0));
                 j++;//xét phần tử tiếp theo.
             }
         }
@@ -144,17 +145,28 @@ public class UtilityFunctions {
             int luaChonTS =  luaChonThiSinh.get(i).getjChoice();
             if(luaChonTS == dapAnDung ){
                 correctNumber ++;
-                result.add(luaChonThiSinh.get(i));
+                //result.add(luaChonThiSinh.get(i));
             }else{
-                LuaChon luaChonSai = luaChonThiSinh.get(i);
-                luaChonSai.setColor(new Scalar(255,0,0)); // to mau do
+                //LuaChon luaChonSai = luaChonThiSinh.get(i);
+                //luaChonSai.setColor(new Scalar(255,0,0)); // to mau do
                 LuaChon dapAn = luaChonDung.get(i);
                 dapAn.setColor(new Scalar(0,0,255,255));
-                result.add(luaChonSai);
+                //result.add(luaChonSai);
                 result.add(dapAn);
             }
         }
         return new Pair<Integer, List<LuaChon>>(correctNumber,result);
     }
-
+    public static void toMauDo(int iChoice,List<LuaChon> tuyChons){
+        for( LuaChon luaChon:tuyChons){
+            if(luaChon.getiChoice()==iChoice){
+                luaChon.setColor(new Scalar(255,0,0));
+            }
+        }
+    }
+    public static void toMauDo(List<LuaChon> second, List<LuaChon> tuyChons) {
+        for (LuaChon luaChon:second){
+            toMauDo(luaChon.getiChoice(),tuyChons);
+        }
+    }
 }

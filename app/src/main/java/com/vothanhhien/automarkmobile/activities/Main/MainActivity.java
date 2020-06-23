@@ -132,33 +132,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void KiemTraVaTaoMau() {
         MauTraLoiDatabase mauTraLoiDatabase = new MauTraLoiDatabase(getApplicationContext());
-        if (mauTraLoiDatabase.TatCaMauTraLoi().size()<3){
+        if (mauTraLoiDatabase.TatCaMauTraLoi().size()<6){
             mauTraLoiDatabase.deleteAll();
             mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(1,"BW50",50,3));
             mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(2,"BW60",60,3));
             mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(3,"BW80",80,4));
-
+            mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(4,"BW60_EX1",60,3));
+            mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(5,"BW50_TN",50,3));
+            mauTraLoiDatabase.ThemMauTraLoi(new MauTraLoi(6,"BW60_TN",60,3));
             KhungTraLoiDatabase khungTraLoiDatabase = new KhungTraLoiDatabase(getApplicationContext());
             khungTraLoiDatabase.XoaTatCaKhungTraLoi();
 
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(1,1,252,48,288,80,3,10));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(2,1,252,148,288,160,6,10));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(3,1,664,592,432,156,4,17));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(4,1,664,320,432,156,4,17));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(5,1,664,52,432,156,4,17));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(1,1,248,48,288,80,3,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(2,1,248,152,288,160,6,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(3,1,670,592,424,152,4,17));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(4,1,670,320,424,152,4,17));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(5,1,670,52,424,152,4,17));
 
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(6,2,184,68,252,80,3,10));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(7,2,184,172,252,160,6,10));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(8,2,568,576,508,148,4,20));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(9,2,568,328,508,148,4,20));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(10,2,568,76,504,148,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(6,2,210,90,232,76,3,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(7,2,210,190,232,148,6,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(8,2,574,557,460,140,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(9,2,574,332,460,140,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(10,2,574,102,460,140,4,20));
 
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(11,3,260,60,272,80,3,10));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(12,3,260,168,272,148,6,10));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(13,3,592,612,460,124,4,20));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(14,3,592,428,460,124,4,20));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(15,3,592,244,460,124,4,20));
-            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(16,3,592,60,460,124,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(11,3,264,65,272,80,3,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(12,3,264,168,272,152,6,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(13,3,599,620,461,124,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(14,3,599,435,461,124,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(15,3,599,253,461,124,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(16,3,599,67,461,124,4,20));
+
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(17,4,176,59,252,76,3,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(18,4,176,166,252,159,6,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(19,4,569,580,500,146,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(20,4,569,328,500,146,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(21,4,569,74,500,146,4,20));
+
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(22,5,262,52,270,80,3,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(23,5,262,156,270,154,6,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(24,5,672,581,404,152,4,17));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(25,5,672,320,404,152,4,17));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(26,5,672,52,404,152,4,17));
+
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(27,6,214,92,232,74,3,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(28,6,214,193,232,145,6,10));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(29,6,576,565,465,137,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(30,6,576,337,465,137,4,20));
+            khungTraLoiDatabase.ThemKhungTL( new KhungTraLoi(31,6,576,106,465,137,4,20));
         }
     }
 

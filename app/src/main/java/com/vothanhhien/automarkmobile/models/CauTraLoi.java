@@ -75,6 +75,7 @@ public class CauTraLoi {
 
     public int order;
     private List <LuaChon> mLuaChon;
+    private List <LuaChon> mLuaChonCH;
     public CauTraLoi(int x, int y, int w, int h, int rows, int cols) {
         this.x = x;
         this.y = y;
@@ -170,8 +171,8 @@ public class CauTraLoi {
         answers = compensation(answers);
         answers = sort(answers);
         answers = swap(answers);
-        answers = UtilityFunctions.standAnswers(answers,cols);
-        String codeAnswer = UtilityFunctions.convertChoices2StringCode(answers);
+        mLuaChonCH = UtilityFunctions.standAnswers(answers,cols);
+        String codeAnswer = UtilityFunctions.convertChoices2StringCode(mLuaChonCH);
         this.mLuaChon = answers;
         return codeAnswer;
     }
@@ -188,15 +189,23 @@ public class CauTraLoi {
         return answers_swap;
     }
 
+    public List<LuaChon> getmLuaChonCH() {
+        return mLuaChonCH;
+    }
+
+    public void setmLuaChonCH(List<LuaChon> mLuaChonCH) {
+        this.mLuaChonCH = mLuaChonCH;
+    }
+
     public String getAnswers(Mat image){
         // chuyển sang ảnh nhị phân
         Mat image_gray = new Mat();
         Imgproc.threshold(image,image_gray,SC.BINARY_THRESH,255,Imgproc.THRESH_BINARY);
         List<LuaChon> answers = findAnswers(image_gray);
         answers = compensation(answers);
-        answers = UtilityFunctions.standAnswers(answers,rows);
-        answers = increcment(answers);
-        String codeAnswer = UtilityFunctions.convertChoices2StringCode(answers);
+        mLuaChonCH = UtilityFunctions.standAnswers(answers,rows);
+        mLuaChonCH = increcment(mLuaChonCH);
+        String codeAnswer = UtilityFunctions.convertChoices2StringCode(mLuaChonCH);
         this.mLuaChon = answers;
         return codeAnswer;
     }

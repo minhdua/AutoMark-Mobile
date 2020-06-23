@@ -41,10 +41,6 @@ import java.util.List;
 
 
 public class FixLocation extends AppCompatActivity {
-    private static final String mOpenCvLibrary = "opencv_java3";
-    static {
-        System.loadLibrary(mOpenCvLibrary);
-    }
     private Toolbar mytoolbar;
     private ImageView imageView;
     private Spinner spinner;
@@ -80,7 +76,7 @@ public class FixLocation extends AppCompatActivity {
         setContentView(R.layout.activity_display);
         Intent intent = getIntent();
         long addr = intent.getLongExtra("Hinh anh", 0);
-        Mat _image = new Mat( addr );
+        Mat _image = new Mat(addr);
         image = _image.clone();
         baiThi = (BaiThi) intent.getSerializableExtra("Bai thi");
         long mauTraLoi = baiThi.getLoaiDe();

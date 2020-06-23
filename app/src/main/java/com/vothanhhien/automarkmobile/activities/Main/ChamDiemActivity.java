@@ -155,29 +155,12 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                         Mat checkMat = warpSave.clone();
                         if (checkposition){
                             Intent intent = new Intent(getBaseContext(), FixLocation.class);
-
                             long addr = checkMat.getNativeObjAddr();
                             intent.putExtra( "Hinh anh", addr );
                             intent.putExtra("Bai thi",baithi);
                             startActivity( intent );
-
-//                            HinhAnh hinhanh = new HinhAnh(matDraw,baithi);
-////                            HinhAnh hinhanh = null;
-//                            intent.putExtra("hinhanh",hinhanh);
-////                            Mat fiximage = Utils.drawAllChoice(matDraw, khungs);
-////                            Bitmap fixBimap = Utils.matToBitmapRotate(fiximage);
-////                            ByteArrayOutputStream stream0 = new ByteArrayOutputStream();
-////                            fixBimap.compress(Bitmap.CompressFormat.JPEG, 100, stream0);
-////                            byte[] byteArray0 = stream0.toByteArray();
-////                            intent.putExtra("hinhanh",byteArray0);
-//                            // chuyển thành mảng byte
-//                            // put vào intent
-//                            startActivity(intent);
-////
-////                            tempBitmap = Utils.matToBitmapRotate(matDraw);
-////                            FileUtils.saveBitmap(tempBitmap,SC.CURR_ERROR_DIR,IMAGE_NAME);
                         }
-                        // stranform hình ảnh xử lý
+//                         stranform hình ảnh xử lý
                         Mat warpOut = Utils.four_point_transform_scaled(saveOutMat, saveCols, saveRows, savePoints);
                         Utils.resize_util_inplace(warpOut, SC.uniform_width, SC.uniform_height);
 
@@ -202,6 +185,7 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
 
                         // Lấy các câu trả lời
                         List<LuaChon> tuyChons = new ArrayList<>();
+                        List<LuaChon> tuyChonsCH = new ArrayList<>();
                         String luaChonTS = "";
                         int questionCount = baithi.getSoCau();
                         for(int i = 2; i< khungs.size(); i++){
@@ -210,6 +194,7 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
                             luaChonThiSinh.setOrder(i-2);
                             luaChonTS += luaChonThiSinh.getAnswers(warpOut);
                             tuyChons.addAll(luaChonThiSinh.getmLuaChon());
+                            tuyChonsCH.addAll(luaChonThiSinh.getmLuaChonCH());
                         }
 
                         phieuTraLoi.setDS_CauTraLoi(luaChonTS.substring(0,questionCount));
@@ -247,18 +232,16 @@ public class ChamDiemActivity extends AppCompatActivity implements CameraBridgeV
 
                             // đánh giá kết quả
                             List<LuaChon> dapAnsDung = UtilityFunctions.convertString2ChoicesAnswer(dapAnDung.getDapAn(),khungs);
-                            Pair<Integer,List<LuaChon>> ketQua = UtilityFunctions.evaluate(tuyChons,dapAnsDung);
+                            Pair<Integer,List<LuaChon>> ketQua = UtilityFunctions.evaluate(tuyChonsCH,dapAnsDung);
                             phieuTraLoi.setDiem(ketQua.first/(float)questionCount);
                             phieuTraLoi.setSoCauDung(ketQua.first);
                             luaChons.addAll(ketQua.second);
-                        }else{
-                            phieuTraLoi.setDiem(0);
-                            phieuTraLoi.setSoCauDung(0);
+                            UtilityFunctions.toMauDo(ketQua.second,tuyChons);
+                            }else{
+                                phieuTraLoi.setDiem(0);
+                                phieuTraLoi.setSoCauDung(0);
+                            }
                             luaChons.addAll(tuyChons);
-                        }
-
-
-
                             PhieuTraLoiDatabase phieuTraLoiDatabase = new PhieuTraLoiDatabase(ChamDiemActivity.this);
                             phieuTraLoi.setID((phieuTraLoiDatabase.MaxID()+1)+"");
                             phieuTraLoi.setMaBaiThi(baithi.getId());
